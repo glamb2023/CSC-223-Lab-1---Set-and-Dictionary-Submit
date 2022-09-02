@@ -31,7 +31,7 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return _values.size() == 0;
+		return size() == 0;
 	}
 
 	@Override
