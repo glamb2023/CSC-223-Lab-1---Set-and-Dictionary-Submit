@@ -17,6 +17,10 @@ class ArraySetTest
 	static final int ARRAY_CONSTANT = 100;
 	static final int COLLECTION_CONSTANT = 50;
 
+	/**
+	 * Creates and populates an ArraySet with 100 integer
+	 * values (1-100).
+	 */
 	public ArraySet<Integer> populateArray1_100() {
 		ArraySet<Integer> arrInt = new ArraySet<Integer>();
 		for (int i = 0; i < ARRAY_CONSTANT; i++) {
@@ -25,6 +29,10 @@ class ArraySetTest
 		return arrInt;
 	}
 
+	/**
+	 * Creates and populates a collection with fifty integer
+	 * values (1-50).
+	 */ 
 	public Collection<Integer> populateCollection1_50(){
 		Collection<Integer> col = new ArrayList<Integer>();
 		for (int i = 0; i < COLLECTION_CONSTANT; i++) {
