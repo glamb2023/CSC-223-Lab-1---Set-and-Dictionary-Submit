@@ -19,16 +19,24 @@ class ParallelArrayDictionaryTest
 {
 
 	private static final int COLLECTION_CONSTANT = 25;
+	private static final int PAD_CONSTANT = 50;
 
+	/**
+	 * Creates and populates a dictionary with fifty integer
+	 * keys and string values.
+	 */
 	public ParallelArrayDictionary<Integer,String> populatePAD(){
 		ParallelArrayDictionary<Integer, String> PAD  = new ParallelArrayDictionary<Integer, String>();
-
-		for (int i =0; i < 50; i++) {
+		for (int i =0; i < PAD_CONSTANT; i++) {
 			PAD.put(i, "Test" + i);
 		}
 		return PAD;
 	}
 	
+	/**
+	 * Creates and populates a collection with fifty integer
+	 * values.
+	 */
 	public Collection<Integer> populateCollection1_50(){
 		Collection<Integer> col = new ArrayList<Integer>();
 		for (int i = 0; i < COLLECTION_CONSTANT; i++) {
@@ -40,8 +48,9 @@ class ParallelArrayDictionaryTest
 	@Test
 	void testParallelArrayDictionary()
 	{
-
-
+		ParallelArrayDictionary<Integer, String> PAD  = new ParallelArrayDictionary<Integer, String>();
+		assertTrue(PAD.size() == 0);
+		assertTrue(PAD.isEmpty());
 	}
 	
 	@Test
@@ -54,13 +63,13 @@ class ParallelArrayDictionaryTest
 		
 		
 		//checks key for value
-		for(int i =0; i < 50; i++) {
+		for(int i =0; i < PAD_CONSTANT; i++) {
 			assertTrue(PADtest.get(i).equals("Test" + i ));
 		}
 		
 		//checks if null value can be retrieved from valid key
-		PADtest.put(50, null);
-		assertTrue(PADtest.get(50)==null);
+		PADtest.put(PAD_CONSTANT, null);
+		assertTrue(PADtest.get(PAD_CONSTANT)==null);
 
 	}
 
@@ -68,23 +77,23 @@ class ParallelArrayDictionaryTest
 	void testPut()
 	{
 		ParallelArrayDictionary<Integer, String> PADtest =  populatePAD();
-		assertTrue(PADtest.size()==50);
+		assertTrue(PADtest.size()==PAD_CONSTANT);
 		//making sure all keys and values are there
-		for(int i =0; i < 50; i++) {
+		for(int i =0; i < PAD_CONSTANT; i++) {
 			assertTrue(PADtest.containsKey(i));
 			assertTrue(PADtest.containsValue("Test"+i));
 		}
 		
 		//make sure can't add duplicate keys
-		for (int i =0; i < 50; i++) {
+		for (int i =0; i < PAD_CONSTANT; i++) {
 			PADtest.put(i, "Test" + i);
 		}
-		assertTrue(PADtest.size()==50);
+		assertTrue(PADtest.size()==PAD_CONSTANT);
 		
 		//add new key/value
-		PADtest.put(50, "New Value");
+		PADtest.put(PADtest.size(), "New Value");
 		assertTrue(PADtest.size()==51);
-		assertTrue(PADtest.containsKey(50));
+		assertTrue(PADtest.containsKey(PAD_CONSTANT));
 		assertTrue(PADtest.containsValue("New Value"));
 		
 		//duplicate value for new key
@@ -106,27 +115,14 @@ class ParallelArrayDictionaryTest
 	{
 		ParallelArrayDictionary<Integer, String> PADtest =  populatePAD();
 		//makes sure invalid keys return null
-		assertTrue(PADtest.remove(50)==null);
+		assertTrue(PADtest.remove(PADtest.size())==null);
 		assertTrue(PADtest.remove(null)==null);
 		
 		//check that value is removed, but key remains
 		PADtest.remove(0);
-		assertTrue(PADtest.size()==50);
+		assertTrue(PADtest.size()==PAD_CONSTANT);
 		
-		assertTrue(PADtest._keys.size()==50);
-	}
-	
-	@Test
-	void testHash() {
-		Map<Integer, String> hashmap = new HashMap<Integer, String>();
-		hashmap.put(1, "test 1");
-		hashmap.put(2, "test 2");
-		hashmap.put(3, "test 3");
-		assertTrue(hashmap.size()==3);
-		hashmap.remove(1);
-		assertFalse(hashmap.containsKey(1));
-		assertTrue(hashmap.size()==2);
-		
+		assertTrue(PADtest._keys.size()==PAD_CONSTANT);
 	}
 
 	@Test
@@ -140,7 +136,7 @@ class ParallelArrayDictionaryTest
 	PADtest.putAll(PADtest);
 	assertTrue(PADtest.size()==50);
 	PADtest.putAll(hashmap);
-	assertTrue(PADtest.size()==53);
+	assertTrue(PADtest.size()==50);
 	
 	}
 
