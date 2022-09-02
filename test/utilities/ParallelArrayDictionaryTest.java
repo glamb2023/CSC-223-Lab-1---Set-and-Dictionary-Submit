@@ -140,7 +140,7 @@ class ParallelArrayDictionaryTest
 	PADtest.putAll(PADtest);
 	assertTrue(PADtest.size()==50);
 	PADtest.putAll(hashmap);
-	assertTrue(PADtest.size()==50);
+	assertTrue(PADtest.size()==53);
 	
 	}
 

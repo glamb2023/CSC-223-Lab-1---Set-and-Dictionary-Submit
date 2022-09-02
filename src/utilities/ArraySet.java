@@ -87,7 +87,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	public boolean addAll(Collection<? extends E> c) {
 		boolean addedAny = false;
 		for(E val: c) {
-			addedAny = _list.add(val) || addedAny;
+			addedAny = this.add(val) || addedAny;
 		}
 		return addedAny;
 	}

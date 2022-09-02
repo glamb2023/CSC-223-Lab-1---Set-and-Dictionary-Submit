@@ -33,41 +33,36 @@ class ArraySetTest
 		return col;
 	}
 
-	public ArraySet<String> populateString() {
-		ArraySet<String> arrString = new ArraySet<String>();
-		arrString.add("Dog");
-		arrString.add("Cat");
-		arrString.add("Mouse");
-		arrString.add("Rat");
-		arrString.add("Moose");
-		return arrString;
-	}
-	
 	@Test
-	void testFullArraySet() {
+	void testArraySet() {
+		//making sure ArraySet is populated
 		ArraySet<Integer> testArr = populateArray1_100();
 		for (int i =0; i < ARRAY_CONSTANT; i++) {
 			testArr.add(i);
 		}
 		assertFalse(testArr.isEmpty());
-		assertTrue(testArr.size()==100);
+		assertTrue(testArr.size()==ARRAY_CONSTANT);
 	}
-	
+
 	@Test
 	void testArraySetCollectionOfE()
 	{
-		
-		
+		//testing initialization of ArraySet with Collection
+		Collection<Integer> col  = populateCollection1_50();
+		ArraySet<Integer> testArr = new ArraySet<Integer>(col);
+		assertTrue(testArr.size()==COLLECTION_CONSTANT);
+		assertTrue(testArr.containsAll(col));
+
 	}
-	
+
 	@Test
 	void testAddE()
 	{
 		ArraySet<Integer> testArr = populateArray1_100();
 		assertFalse(testArr.isEmpty());
-		
+
 		//making sure it can't add duplicates
-		for (int i =0; i < 100; i++) {
+		for (int i =0; i < ARRAY_CONSTANT; i++) {
 			testArr.add(i);
 		}
 		assertFalse(testArr.isEmpty());
@@ -77,7 +72,7 @@ class ArraySetTest
 		testArr.add(100);
 		testArr.add(-10);
 		assertTrue(testArr.size()==102);
-		
+
 		assertTrue(testArr.contains(-10));
 		assertTrue(testArr.contains(100));
 	}
@@ -87,14 +82,19 @@ class ArraySetTest
 	{
 		ArraySet<Integer> arr = new ArraySet<Integer>();
 		Collection<Integer> col = populateCollection1_50();
-		
+		//adding collection to empty ArraySet
 		arr.addAll(col);
 		assertTrue(arr.size() == COLLECTION_CONSTANT);
 		assertTrue(arr.containsAll(col));
-		
+
+		//readding same collection to make sure no duplicates
+		arr.addAll(col);
+		assertTrue(arr.size() == COLLECTION_CONSTANT);
+		assertTrue(arr.containsAll(col));
+
 	}
-	
-	
+
+
 	@Test
 	void testRetainAll()
 	{
@@ -125,7 +125,7 @@ class ArraySetTest
 		assertFalse(testArr.contains(49));
 		assertFalse(testArr.contains(100));
 
-		for (int i = 50; i < 100; i++) {
+		for (int i = 50; i < ARRAY_CONSTANT; i++) {
 			assertTrue(testArr.contains(i));
 		}
 	}
@@ -133,6 +133,33 @@ class ArraySetTest
 	@Test
 	void testAddAllIntCollectionOfQextendsE()
 	{
+
+		ArraySet<Integer> testArr = new ArraySet<>();
+		Collection<Integer> testCollection = populateCollection1_50();
+		for (int i = 50; i<60; i++) {
+			testArr.add(i);
+		}
+		testArr.addAll(0, testCollection);
+		assertTrue(testArr.size()==60);
+		//making sure everything is at proper index
+		for (int i =0; i<50; i++) {
+			assertTrue(testArr.get(i)==i);
+		}
+		testArr.clear();
+		testCollection.clear();
 		
+		//adding back values with a duplicate and putting a collection at specified index
+		testArr.add(5);
+		testArr.add(3);
+		testArr.add(7);
+		testCollection.add(5);
+		testCollection.add(4);
+		testCollection.add(6);
+		testArr.addAll(1, testCollection);
+	
+		assertTrue(testArr.size()==5);
+		//making sure it is now in updated index
+		assertTrue(testArr.get(3)==3);
+
 	}
 }
