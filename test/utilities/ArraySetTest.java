@@ -95,18 +95,16 @@ class ArraySetTest
 		assertTrue(arr.size() == COLLECTION_CONSTANT);
 		assertTrue(arr.containsAll(col));
 
-		//readding same collection to make sure no duplicates
+		//re-adding same collection to make sure no duplicates
 		arr.addAll(col);
 		assertTrue(arr.size() == COLLECTION_CONSTANT);
 		assertTrue(arr.containsAll(col));
 
 	}
 
-
 	@Test
 	void testRetainAll()
 	{
-
 		ArraySet<Integer> testArr = populateArray1_100();
 		Collection<Integer> testCollection = populateCollection1_50();
 		testArr.retainAll(testCollection);
