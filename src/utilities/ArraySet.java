@@ -29,7 +29,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	}
 	
 	public ArraySet(Collection<E> col) {
-		_list = (ArrayList<E>) col;
+		_list = new ArrayList<E>(col);
 	}
 
 	@Override
