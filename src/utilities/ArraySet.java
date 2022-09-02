@@ -11,14 +11,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.Spliterator;
 
 public class ArraySet<E> implements List<E>, Set<E>
 {
 	protected ArrayList<E> _list;
-	
+
 	public ArraySet()
 	{
-		
+		_list = new ArrayList<E>();
+	}
+	
+	public ArraySet(Collection<E> col) {
+		_list = (ArrayList<E>) col;
 	}
 
 	@Override
@@ -168,5 +173,17 @@ public class ArraySet<E> implements List<E>, Set<E>
 		// TODO Auto-generated method stub
 		return _list.subList(fromIndex, toIndex);
 	}
+
+	@Override
+	public String toString() {
+		return _list.toString();	
+	}
+
+	@Override
+	public Spliterator<E> spliterator() {
+		// TODO Auto-generated method stub
+		return List.super.spliterator();
+	}
+
 
 }
