@@ -1,5 +1,10 @@
 package utilities;
 
+/**
+ * @author taterosen & georgelamb
+ * @date 09/02/2022
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -87,7 +92,6 @@ class ArraySetTest
 //		Collection<Integer> testCollection = populateCollection1_50();
 //		list = ArraySet(testCollection);
 	}
-	
 	
 	
 	@Test

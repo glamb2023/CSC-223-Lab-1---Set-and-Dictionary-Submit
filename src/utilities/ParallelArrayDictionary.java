@@ -1,8 +1,9 @@
-/*
- * @author trosen & glamb
- */
-
 package utilities;
+
+/**
+ * @author taterosen & georgelamb
+ * @date 09/02/2022
+ */
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -24,38 +25,32 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return _keys.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return size() == 0;
+		return this.size() == 0;
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
 		return _keys.contains(key);
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
 		return _values.contains(value);
 	}
 
 	@Override
 	public Value get(Object key) {
-		
 		if (key == null || !_keys.contains(key)) return null;
 		return _values.get(_keys.indexOf(key));
 	}
 
 	@Override
 	public Value put(Key key, Value value) {
-		// TODO Auto-generated method stub
 		if (key == null ||  _keys.contains(key)) return null;
 		_keys.add(key);
 		_values.add(value);
@@ -64,14 +59,14 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 
 	@Override
 	public Value remove(Object key) {
-		// TODO Auto-generated method stub
 		if (key == null || !_keys.contains(key)) return null;
-		return _values.remove(_keys.indexOf(key));
+		Value removedValue = _values.get(_keys.indexOf(key));
+		_values.set(_keys.indexOf(key), null);
+		return removedValue;
 	}
 
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m) {
-		// TODO Auto-generated method stub
 		for(Key k: m.keySet()) {
 			if(!_keys.contains(k)) {
 				_keys.add(k);
@@ -82,14 +77,12 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		_keys.clear();
 		_values.clear();
 	}
 
 	@Override
 	public Set<Key> keySet() {
-		// TODO Auto-generated method stub
 		ArraySet<Key> keySet = new ArraySet<Key>();
 		keySet.addAll(_keys);
 		return keySet;
@@ -97,7 +90,6 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 
 	@Override
 	public Collection<Value> values() {
-		// TODO Auto-generated method stub
 		Collection<Value> valueCol = new ArrayList<Value>(_values);
 		return valueCol;
 	}
@@ -110,9 +102,9 @@ public class ParallelArrayDictionary<Key,Value> implements Map<Key,Value> {
 		}
 		return entries;
 	}
+	
 	@Override
 	public String toString() {
 		return this.toString();
-		
 	}
 }

@@ -1,5 +1,10 @@
 package utilities;
 
+/**
+ * @author taterosen & georgelamb
+ * @date 09/02/2022
+ */
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,6 +28,7 @@ class ParallelArrayDictionaryTest
 		}
 		return PAD;
 	}
+	
 	public Collection<Integer> populateCollection1_50(){
 		Collection<Integer> col = new ArrayList<Integer>();
 		for (int i = 0; i < COLLECTION_CONSTANT; i++) {
@@ -31,20 +37,12 @@ class ParallelArrayDictionaryTest
 		return col;
 	}
 	
-	
-	
-	
 	@Test
 	void testParallelArrayDictionary()
 	{
 
 
 	}
-
-	
-	
-	
-	
 	
 	@Test
 	void testGet()
@@ -117,6 +115,7 @@ class ParallelArrayDictionaryTest
 		
 		assertTrue(PADtest._keys.size()==50);
 	}
+	
 	@Test
 	void testHash() {
 		Map<Integer, String> hashmap = new HashMap<Integer, String>();
@@ -154,6 +153,5 @@ class ParallelArrayDictionaryTest
 		assertTrue(PADtest.size()==0);
 		PADtest = populatePAD();
 		assertTrue(PADtest.size()==50);
-	
 	}
 }
