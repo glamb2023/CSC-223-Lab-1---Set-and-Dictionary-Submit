@@ -128,22 +128,6 @@ class ParallelArrayDictionaryTest
 	@Test
 	void testPutAll()
 	{
-
-	//making test hashmap with same keys and some different to make sure it can't add duplicates
-	Map<Integer, String> hashmap = new HashMap<Integer, String>();
-	hashmap.put(1, "test 1");
-	hashmap.put(2, "test 2");
-	hashmap.put(3, "test 3");
-	hashmap.put(50, "test 1");
-	hashmap.put(51, "test 2");
-	hashmap.put(52, "test 3");
-	ParallelArrayDictionary<Integer,String> PADtest = populatePAD();
-	PADtest.putAll(PADtest);
-	assertTrue(PADtest.size()==50);
-	PADtest.putAll(hashmap);
-	assertTrue(PADtest.size()==53);
-	
-
 		//making test hashmap with 3 same keys and 3 different to make sure it can't add duplicates
 		Map<Integer, String> hashmap = new HashMap<Integer, String>();
 		hashmap.put(1, "test 1");
