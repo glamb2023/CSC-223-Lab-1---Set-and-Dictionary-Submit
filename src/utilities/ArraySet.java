@@ -14,10 +14,11 @@ import java.util.Spliterator;
  * @author georgelamb &taterosen
  * Using wrapping-around implementation to re-define all of the methods for an ArrayList
  * to make it into an ArrayList based Set.
+ * 
  * <p> Bugs:
+ * 
  * @author taterosen & georgelamb
  * @date 09/02/2022
- * 
  */
 
 public class ArraySet<E> implements List<E>, Set<E>
@@ -80,7 +81,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 
 	/**
-	 * adds all items from collection to end of list
+	 * Adds all items from collection to end of list.
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
@@ -92,7 +93,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	}
 
 	/**
-	 * adds all items to index position instead of to end
+	 * Adds all items to given index position.
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
@@ -113,7 +114,8 @@ public class ArraySet<E> implements List<E>, Set<E>
 	}
 
 	/**
-	 * keeps only the items from the collection
+	 * Keeps only the items from the given collection 
+	 * in the set.
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {

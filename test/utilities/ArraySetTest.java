@@ -17,7 +17,6 @@ class ArraySetTest
 	static final int ARRAY_CONSTANT = 100;
 	static final int COLLECTION_CONSTANT = 50;
 
-
 	public ArraySet<Integer> populateArray1_100() {
 		ArraySet<Integer> arrInt = new ArraySet<Integer>();
 		for (int i = 0; i < ARRAY_CONSTANT; i++) {
@@ -53,7 +52,6 @@ class ArraySetTest
 		assertFalse(testArr.isEmpty());
 		assertTrue(testArr.size()==100);
 	}
-
 	
 	@Test
 	void testArraySetCollectionOfE()
@@ -82,15 +80,18 @@ class ArraySetTest
 		
 		assertTrue(testArr.contains(-10));
 		assertTrue(testArr.contains(100));
-
 	}
 
 	@Test
 	void testAddAllCollectionOfQextendsE()
 	{
+		ArraySet<Integer> arr = new ArraySet<Integer>();
+		Collection<Integer> col = populateCollection1_50();
 		
-//		Collection<Integer> testCollection = populateCollection1_50();
-//		list = ArraySet(testCollection);
+		arr.addAll(col);
+		assertTrue(arr.size() == COLLECTION_CONSTANT);
+		assertTrue(arr.containsAll(col));
+		
 	}
 	
 	
@@ -103,8 +104,8 @@ class ArraySetTest
 		testArr.retainAll(testCollection);
 
 		//making sure it only retains 1-50
-		assertTrue(testArr.size()==50);
-		assertFalse(testArr.contains(50));
+		assertTrue(testArr.size()==COLLECTION_CONSTANT);
+		assertFalse(testArr.contains(COLLECTION_CONSTANT));
 		assertTrue(testArr.contains(0));
 		for (int i = 0; i < 50; i++) {
 			assertTrue(testArr.contains(i));
@@ -120,7 +121,7 @@ class ArraySetTest
 		testArr.removeAll(testCollection);
 
 		//testing to see if the collection numbers were removed
-		assertTrue(testArr.size()==50);
+		assertTrue(testArr.size()==COLLECTION_CONSTANT);
 		assertFalse(testArr.contains(49));
 		assertFalse(testArr.contains(100));
 
@@ -132,5 +133,6 @@ class ArraySetTest
 	@Test
 	void testAddAllIntCollectionOfQextendsE()
 	{
+		
 	}
 }
