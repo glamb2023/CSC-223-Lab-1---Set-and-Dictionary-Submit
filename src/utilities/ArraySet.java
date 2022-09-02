@@ -1,9 +1,5 @@
 package utilities;
 
-/**
- * @author taterosen & georgelamb
- * @date 09/02/2022
- */
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +8,17 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.Spliterator;
+
+
+/**
+ * @author georgelamb &taterosen
+ * Using wrapping-around implementation to re-define all of the methods for an ArrayList
+ * to make it into an ArrayList based Set.
+ * <p> Bugs:
+ * @author taterosen & georgelamb
+ * @date 09/02/2022
+ * 
+ */
 
 public class ArraySet<E> implements List<E>, Set<E>
 {
@@ -71,6 +78,10 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return _list.containsAll(c);
 	}
 
+
+	/**
+	 * adds all items from collection to end of list
+	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		boolean addedAny = false;
@@ -80,6 +91,9 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return addedAny;
 	}
 
+	/**
+	 * adds all items to index position instead of to end
+	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
 		boolean addedAny = false;
@@ -98,6 +112,9 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return _list.removeAll(c);
 	}
 
+	/**
+	 * keeps only the items from the collection
+	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		return _list.retainAll(c);
